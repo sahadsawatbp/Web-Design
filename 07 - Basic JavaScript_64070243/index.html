@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 07 - Basic JavaScript</title>
+
+    <!-- Bootstrap stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body class="container">
+
+    <h1>Book Store</h1>
+
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <th scope="row">
+                    <img src="https://bci.kinokuniya.com/jsp/images/book-img/97819/97819747/9781974715466.JPG"
+                        class="img-thumbnail rounded float-start" style="max-width: 150px;">
+                </th>
+                <td>
+                    <h6 class="book-title">SPY X FAMILY เล่ม 1</h6>
+                    <p class="book-author"><b>ผู้เขียน:</b> Endou Tatsuya</p>
+                    <p class="book-catergory"><b>หมวดหมู่:</b> การ์ตูน, การ์ตูนญี่ปุ่น</p>
+                    <p class="book-description">สุดยอดสปาย (สนธยา) ได้รับคำสั่งให้สร้าง "ครอบครัว"
+                        เพื่อลอบเข้าไปในโรงเรียนชื่อดัง แต่ "ลูกสาว" ที่เขาได้พบดันเป็นผู้มีพลังจิตอ่านใจคน! "ภรรยา"
+                        เป็นมือสังหาร!? โฮมคอเมดี้สุดฮาของครอบครัวปลอมๆ ที่ต่างฝ่ายต่างปกปิดตัวจริงของกันและกัน
+                        ที่ต้องเผชิญหน้ากับการสอบเข้าและปกป้องโลก</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">฿</span>
+                        <span class="input-group-text book-price" id="book1-price">76.00</span>
+                        <input type="number" class="form-control" id="book1-quantity" name="quantity" min="0" value="0">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <img src="https://bci.kinokuniya.com/jsp/images/book-img/97819/97819747/9781974717248.JPG"
+                        class="img-thumbnail rounded float-start" style="max-width: 150px;">
+                </th>
+                <td>
+                    <h6 class="book-title">SPY X FAMILY เล่ม 2</h6>
+                    <p class="book-author"><b>ผู้เขียน:</b> Endou Tatsuya</p>
+                    <p class="book-catergory"><b>หมวดหมู่:</b> การ์ตูน, การ์ตูนญี่ปุ่น</p>
+                    <p class="book-description">ตระกูลฟอเจอร์สอบเข้าเรียนโรงเรียนดัง
+                        เพื่อทำภารกิจปกป้องความสงบสุขระหว่างออสทาเนียและเวสทาลิส แต่เพื่อเข้าใกล้เป้าหมายเดสมอนด์
+                        อาเนียจะต้องเป็นนักเรียนดีเด่นให้ได้!! สนธยาจึงเริ่มปฏิบัติการ "แผนตีสนิทชิดเชื้อ"...!?</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">฿</span>
+                        <span class="input-group-text book-price" id="book2-price">78.00</span>
+                        <input type="number" class="form-control" id="book2-quantity" name="quantity" min="0" value="0">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <img src="https://bci.kinokuniya.com/jsp/images/book-img/97819/97819747/9781974718160.JPG"
+                        class="img-thumbnail rounded float-start" style="max-width: 150px;">
+                </th>
+                <td>
+                    <h6 class="book-title">SPY X FAMILY เล่ม 3</h6>
+                    <p class="book-author"><b>ผู้เขียน:</b> Endou Tatsuya</p>
+                    <p class="book-catergory"><b>หมวดหมู่:</b> การ์ตูน, การ์ตูนญี่ปุ่น</p>
+                    <p class="book-description">ยูริ น้องชายของยอร์ มาเยือนบ้านฟอเจอร์!!
+                        สนธยาและยูริต่างปิดบังจริงของตัวเองที่เป็นสปาย
+                        และตำรวจลับเข้าล้วงความลับกันอย่างดุเดือดแล้วยูริผู้รักและเทิดทูนพี่สาว
+                        ก็ได้บอกให้สนธยาพิสูจน์ว่าทั้งสองเป็นคู่รักกันจริงๆ</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">฿</span>
+                        <span class="input-group-text book-price" id="book3-price">80.00</span>
+                        <input type="number" class="form-control" id="book3-quantity" name="quantity" min="0" value="0">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <img src="https://m.media-amazon.com/images/I/91MVcBwvqNL.jpg"
+                        class="img-thumbnail rounded float-start" style="max-width: 150px;">
+                </th>
+                <td>
+                    <h6 class="book-title">ยาวิเศษ (George's Marvellous Medicine)</h6>
+                    <p class="book-author"><b>ผู้เขียน:</b> โรอัลด์ ดาห์ล Roald Dahl</p>
+                    <p class="book-catergory"><b>หมวดหมู่:</b> วรรณกรรม, วรรณกรรมเยาวชน</p>
+                    <p class="book-description">หนังสือเล่มนี้ไม่เหมาะสำหรับเด็กที่ไม่บรรลุนิติภาวะ เด็กสมองต่ำกว่า 18
+                        ปีไม่ควรอ่านผู้ใหญ่หรือเด็กที่อ่านหนังสือเล่มนี้
+                        ต้องอ่านอย่างใช้ความคิดหากเด็กคนใดประสงค์จะเอาอย่างหรือทำตาม
+                        โปรดปรึกษาผู้เขียนหรือสำนักพิมพ์สำหรับหนังสือเล่มนี้ สำหรับเด็กๆ โปรดระลึกเสมอว่า
+                        เรื่องทั้งหมดในเล่มนี้ ให้อ่านเพียงสนุก อย่าได้เอาอย่างสำหรับผู้ใหญ่ก็ควรระลึกให้ได้ว่า
+                        อย่าทำตัวให้เด็กเกลียด แล้วเรื่องแบบนี้จะไม่เกิดขึ้น</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">฿</span>
+                        <span class="input-group-text book-price" id="book4-price">192.95</span>
+                        <input type="number" class="form-control" id="book4-quantity" name="quantity" min="0" value="0">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <img src="https://bci.kinokuniya.com/jsp/images/book-img/97861/97861604/9786160454914.JPG"
+                        class="img-thumbnail rounded float-start" style="max-width: 150px;">
+                </th>
+                <td>
+                    <h6 class="book-title">เซนิเท็นโด ร้านลึกลับกับขนมวิเศษ ตอน ของนำโชคของเบนิโกะ เล่ม 1</h6>
+                    <p class="book-author"><b>ผู้เขียน:</b> Hiroshima Reiko</p>
+                    <p class="book-catergory"><b>หมวดหมู่:</b> วรรณกรรม, วรรณกรรมเยาวชน</p>
+                    <p class="book-description"> ณ ตรอกเล็ก ๆ มีร้านขายขนมมหัศจรรย์ตั้งอยู่
+                        มีเพียงลูกค้าผู้โชคดีเท่านั้นจึงจะค้นพบร้านแห่งนี้
+                        ท่ามกลางขนมหลากสีสันน่าตื่นตาที่เรียงรายอยู่หน้าร้านนั้น
+                        เบนิโกะเจ้าของร้านผู้ลึกลับเป็นผู้เลือกขนมที่เหมาะสมกับลูกค้าแต่ละคน
+                        ขนมชิ้นนั้นอาจบันดาลให้คุณพบโชคดีสุดประเสริฐหรือโชคร้ายอย่างมหันต์
+                        ขึ้นอยู่กับว่าคุณจะเลือกกินหรือใช้งานขนมชิ้นนั้นอย่างไร หากพร้อมแล้ว
+                        ขอเชิญมาพบกับขนมประหลาดพลังวิเศษล้ำจินตนาการ และเรื่องราวเกินคาดเดาแห่งร้านเซนิเท็นโดกันเลย!</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">฿</span>
+                        <span class="input-group-text book-price" id="book5-price">123.25</span>
+                        <input type="number" class="form-control" id="book5-quantity" name="quantity" min="0" value="0">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <img src="https://bci.kinokuniya.com/jsp/images/book-img/97861/97861604/9786160455546.JPG"
+                        class="img-thumbnail rounded float-start" style="max-width: 150px;">
+                </th>
+                <td>
+                    <h6 class="book-title">เซนิเท็นโด ร้านลึกลับกับขนมวิเศษ เล่ม 2</h6>
+                    <p class="book-author"><b>ผู้เขียน:</b> Hiroshima Reiko</p>
+                    <p class="book-catergory"><b>หมวดหมู่:</b> วรรณกรรม, วรรณกรรมเยาวชน</p>
+                    <p class="book-description"> ทุกข์เปลี่ยนเป็นสุข สุขเปลี่ยนเป็นทุกข์
+                        ร้านเซนิเท็นโดพร้อมบันดาลเส้นทางชีวิตให้ลูกค้าผู้โชคดีทุกท่านแล้ว... "ซนิเท็นโด"
+                        ร้านขายขนมลึกลับกลับมาอีกครั้ง พร้อมกับขนมวิเศษอันน่าตื่นตาและหลากหลาย
+                        ตั้งแต่กระเป๋าคุณหมอพร้อมลูกอมรักษาได้ทุกโรค
+                        ข้าวเกรียบพร้อมเซียมซีเทพจิ้งจอกที่ทำนายแม่นทุกเรื่อง
+                        ขนมกรุบกรอบที่ช่วยให้ไม่ว่าใครก็กลายเป็นอัจฉริยะทางดนตรีได้
+                        จนถึงชาที่นำพาเพื่อนคลายหงา...หรือกระทั่งรักแท้ "เบนิโกะ"
+                        พร้อมเปิดประตูต้อนรับคุณผู้อ่านผู้โชคดีทุกท่านอีกครั้งสู่เรื่องราวแห่งโชคชะตาอันพลิกผัน!</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">฿</span>
+                        <span class="input-group-text book-price" id="book6-price">125.50</span>
+                        <input type="number" class="form-control" id="book6-quantity" name="quantity" min="0" value="0">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <img src="https://bci.kinokuniya.com/jsp/images/book-img/97861/97861604/9786160456604.JPG"
+                        class="img-thumbnail rounded float-start" style="max-width: 150px;">
+                </th>
+                <td>
+                    <h6 class="book-title">เซนิเท็นโด ร้านลึกลับกับขนมวิเศษ เล่ม 3</h6>
+                    <p class="book-author"><b>ผู้เขียน:</b> Hiroshima Reiko</p>
+                    <p class="book-catergory"><b>หมวดหมู่:</b> วรรณกรรม, วรรณกรรมเยาวชน</p>
+                    <p class="book-description"> จะเกิดอะไรขึ้นเมื่อเบนิโกะ
+                        เจ้าของร้านขายขนมเซนิเท็นโดต้องพบร้านขายขนมลึกลับอีกแห่งประกาศตัวเป็นคู่แข่ง
+                        ขณะที่เธอยังคงสรรหาขนมวิเศษใหม่ๆ ตามความปรารถนาของลูกค้าต่างวัย
+                        ตั้งแต่เด็กหนุ่มที่อยากสละตำแหน่งพี่คนโตของตนเอง คุณพ่อที่ต้องการกำจัดฝันร้ายของลูกสาว
+                        ไปจนถึงคุณยายที่หาทางลบรอยเหี่ยวย่นของวัยชรา มาลุ้นกันว่าขนมวิเศษรอบนี้จะมีพลังน่าทึ่งขนาดไหน
+                        แล้วผลลัพธ์นั้นจะนำมาซึ่งโชคดีสมดั่งใจหรือโชคร้ายเกินคำนึง!</p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">฿</span>
+                        <span class="input-group-text book-price" id="book7-price">130.25</span>
+                        <input type="number" class="form-control" id="book7-quantity" name="quantity" min="0" value="0">
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h5>Promotion</h5>
+    <ul>
+        <li>ซื้อครบ 3 เล่ม ลด 10%</li>
+        <li>ซื้อครบ 5 เล่ม ลด 15%</li>
+        <li>ค่าส่งคงที่ เล่มล่ะ 5.00 บาท</li>
+        <li>ซื้อครบ 500 บาท (ราคารวมก่อนหักส่วนลด) !!! ฟรีค่าจัดส่งทั่วประเทศ</li>
+    </ul>
+
+    <div class="order-summary">
+        <h5>Order summary</h5>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary me-md-2" type="button" id="btnSummary">Calculate order summary</button>
+        <button class="btn btn-secondary" type="reset" id="btnReset">Reset</button>
+    </div>
+
+</body>
+<script src="lab07.js"></script>
+</html>
