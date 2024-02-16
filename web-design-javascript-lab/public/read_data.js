@@ -1,9 +1,9 @@
 var ref = firebase.database().ref("MyList");
-let readList = () => {
+let readList = (snapshot) => {
     
     document.getElementById('main-content').innerHTML = "";
-    const currentUser = firebase.auth().currentUser;
-    userListRef.child(currentUser.uid).once("value").then((snapshot) => {
+    // const currentUser = firebase.auth().currentUser;
+    // userListRef.child(currentUser.uid).once("value").then((snapshot) => {
         snapshot.forEach((data) => {
             
                 var id = data.key;
@@ -25,10 +25,10 @@ let readList = () => {
                     btn.addEventListener("click", deleteList);
                 });
             
-        })
-    })
-    console.log("Success")
-}
+        });
+    // })
+    console.log("Success");
+};
 
 let deleteList = (event) =>{
     const id = event.currentTarget.getAttribute('data-id');
@@ -56,26 +56,27 @@ let readList2 = () => {
             const newElement2 = document.createRange().createContextualFragment(newDiv2);
             document.getElementById("main-content2").appendChild(newElement2);
         
-        })
-    })
+        });
+    });
 }
 let getList = (user) =>{
     if(user){
         userListRef.child(user.uid).on("value",(snapshot)=>{
-            readList();
+            readList(snapshot);
             readList2();
-        })
-    }
-}
+        });
+    };
+};
 
 const logoutItems = document.querySelectorAll(".logged-out");
 const loginItems = document.querySelectorAll(".logged-in");
 let setupUI = (user) =>{
     if(user){
+        document.querySelector("#user-profile-name").innerHTML= user.email;
         loginItems.forEach((item)=>(item.style.display = "inline-block"));
         logoutItems.forEach((item)=>(item.style.display = "none"));
     }else{
         loginItems.forEach((item)=>(item.style.display = "none"));
         logoutItems.forEach((item)=>(item.style.display = "inline-block"));
-    }
-}
+    };
+};

@@ -46,7 +46,7 @@ btnCancels.forEach((btn) =>{
 firebase.auth().onAuthStateChanged((user) =>{
     if(user){
         console.log(user);
-        getList(user)
+        // getList(user)
     }
     setupUI(user)
 })

@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a href="#" class="navbar-brand">Lab 10 - Javascript</a>
+            <a href="#" class="navbar-brand">Lab 11 - Basic Tic-Tac-Toe</a>
             <nav>
                 <button type="button" id="btnSignUp" class="btn btn-outline-light logged-out" data-bs-toggle="modal" data-bs-target="#modal-signup">
                     <i class="bi bi-person-plus-fill"></i> Sign  up
@@ -24,26 +24,90 @@
                 <button type="button" id="btnLogin" class="btn btn-outline-light logged-out" data-bs-toggle="modal" data-bs-target="#modal-login">
                     <i class="bi bi-person-plus-fill"></i> Login
                 </button>
+                <span class="logged-in">
+                    <span id="user-profile-name" class="display-name text-white"></span>
+                </span>
                 <button type="button" id="btnLogout" class="btn btn-outline-light logged-in">
                     <i class="bi bi-box-arrow-right"></i> Logout
                 </button>
             </nav>
         </div>
     </nav>
-    <div class="container p-5 justify-content-center logged-in">
+    <h1 class="display-1 text-center">Tic-Tac-Toe</h1>
+    <div class="container logged-in justify-content-center">
+        <form class="form-inline row">
+            <div class="form-group mb-2 row col-10">
+                <label for="inputPlayer-x" class="col-form-label col-2">Players X:</label>
+                <div class="col-10">
+                    <input readonly type="text" class="form-control" id="inputPlayer-x" placeholder="Player X">
+                </div>
+            </div>
+            <div class="form-group mb-2 col-2">
+                <button type="button" id="btnJoin-x" class="btn btn-primary btn-join">Join</button>
+                <button type="button" id="btnCancel-x" class="btn btn-secondary btn-cancel-join-game">Cancel</button>
+            </div>
+        </form>
+        <form class="form-inline row">
+            <div class="form-group mb-2 row col-10">
+                <label for="inputPlayer-o" class="col-form-label col-2">Players O:</label>
+                <div class="col-10">
+                    <input readonly type="text" class="form-control" id="inputPlayer-o" placeholder="Player O">
+                </div>
+            </div>
+            <div class="form-group mb-2 col-2">
+                <button type="button" id="btnJoin-o" class="btn btn-primary btn-join">Join</button>
+                <button type="button" id="btnCancel-o" class="btn btn-secondary btn-cancel-join-game">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div class="container d-flex justify-content-center mb-2">
+        <button type="button" id="btnStartGame" class="btn btn-success mx-1 logged-in">START GAME</button>
+        <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 logged-in">END GAME</button>
+    </div>
+    <div class="container mb-2">
+        <div class="row" id="row-1">
+            <div class="col border justify-content-center align-items-center table-col" id="row-1-col-1">
+                <p class="display-4 text-center"></p>
+            </div>
+            <div class="col border justify-content-center align-items-center table-col" id="row-1-col-2">
+                <p class="display-4 text-center"></p>
+            </div>
+            <div class="col border justify-content-center align-items-center table-col" id="row-1-col-3">
+                <p class="display-4 text-center"></p>
+            </div>
+        </div>
+        <div class="row" id="row-2">
+            <div class="col border justify-content-center align-items-center table-col" id="row-2-col-1">
+                <p class="display-4 text-center"></p>
+            </div>
+            <div class="col border justify-content-center align-items-center table-col" id="row-2-col-2">
+                <p class="display-4 text-center"></p>
+            </div>
+            <div class="col border justify-content-center align-items-center table-col" id="row-2-col-3">
+                <p class="display-4 text-center"></p>
+            </div>
+        </div>
+        <div class="row" id="row-3">
+            <div class="col border justify-content-center align-items-center table-col" id="row-3-col-1">
+                <p class="display-4 text-center"></p>
+            </div>
+            <div class="col border justify-content-center align-items-center table-col" id="row-3-col-2">
+                <p class="display-4 text-center"></p>
+            </div>
+            <div class="col border justify-content-center align-items-center table-col" id="row-3-col-3">
+                <p class="display-4 text-center"></p>
+            </div>
+        </div>
+    </div>
+     <!-- <div class="container p-5 justify-content-center logged-in">
         <div class="d-flex">
             <div class="me-3">
                 <h1>My List</h1>
             </div>
-            <button type="submit" class="btn btn-primary h-50" onclick="readList()">
-                <i class="bi bi-arrow-clockwise">update</i>
-            </button>
+            
         </div>
         <div id="main-content">
-            <!-- <div class="form-check">
-                <input type="checkbox" class="form-check-input">
-                <label class="form-check-label">XXXXXX</label>
-            </div> -->
+            
         </div>
     </div>
     <div class="container p-5 justify-content-center logged-in">
@@ -58,9 +122,9 @@
                 aria-label="Username" aria-describedby="basic-addon1">
             <button class="btn btn-warning" type="submit" onclick="addList()">Submit</button>
         </div>
-    </div>
+    </div>  -->
 
-    <div class="container p-5 justify-content-center logged-in" >
+    <!-- <div class="container p-5 justify-content-center logged-in" >
         <div class="d-flex">
             <div class="me-3">
                 <h1>Player List</h1>
@@ -70,10 +134,7 @@
             </button>
         </div>
         <div id="main-content2">
-            <!-- <div class="form-check">
-                <input type="checkbox" class="form-check-input">
-                <label class="form-check-label">XXXXXX</label>
-            </div> -->
+            
         </div>
     </div>
     <div class="container p-5 justify-content-center logged-in">
@@ -90,7 +151,7 @@
                 aria-describedby="basic-addon1">
             <button class="btn btn-warning" type="submit" onclick="addList2()">Submit</button>
         </div>
-    </div>
+    </div> -->
     <div class="modal" id="modal-login" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -149,8 +210,9 @@
         };
         firebase.initializeApp(firebaseConfig)
       </script>
-      <script type="text/javascript" src="read_data.js"></script>
-      <script type="text/javascript" src="insert_data.js"></script>
-      <script type="text/javascript" src="auth.js"></script>
+      <script src="read_data.js"></script>
+      <script src="insert_data.js"></script>
+      <script src="auth.js"></script>
+      <script src="game.js"></script>
 </body>
 </html>
