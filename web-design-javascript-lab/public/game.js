@@ -1,20 +1,18 @@
 const gameRef = firebase.database().ref("Game");
-
 const btnJoins = document.querySelectorAll(".btn-join");
 btnJoins.forEach((btnJoins) => btnJoins.addEventListener("click", joinGame));
-
+const textShowing = document.getElementById('text-show');
 function joinGame(event){
     const currentUser = firebase.auth().currentUser;
     console.log("[Join] Current user", currentUser);
     if(currentUser){
         const btnJoinID = event.currentTarget.getAttribute("id");
         const player = btnJoinID[btnJoinID.length-1];
-
         const playerForm = document.getElementById(`inputPlayer-${player}`);
         if(playerForm.value == ""){
             // Add Player into database
-            let tmpID = `user-${player}-id`;
-            let tmpEmail = `user-${player}-email`;
+            let tmpID = `user_${player}_id`;
+            let tmpEmail = `user_${player}_email`;
             gameRef.child("game-1").update({
                 [tmpID]: currentUser.uid,
                 [tmpEmail]:currentUser.email
@@ -24,11 +22,9 @@ function joinGame(event){
         }
         if("inputPlayer-x"){
             document.querySelector("#btnJoin-o").disabled = true;
-           
         }
         if("inputPlayer-o"){
             document.querySelector("#btnJoin-x").disabled = true;
-            
         };
     };
 };
@@ -57,11 +53,11 @@ function getGameInfo(snapshot){
         const gameInfo = data.val();
         Object.keys(gameInfo).forEach((key)=>{
             switch(key){
-                case "user-x-email":
+                case "user_x_email":
                     document.getElementById("inputPlayer-x").value = gameInfo[key];
                     document.querySelector("#btnJoin-x").disabled = true;
                     break;
-                case "user-o-email":
+                case "user_o_email":
                     document.getElementById("inputPlayer-o").value = gameInfo[key];
                     document.querySelector("#btnJoin-o").disabled = true;
                     break;
@@ -81,10 +77,19 @@ function getGameInfo(snapshot){
     });
     const x = document.getElementById(`inputPlayer-x`).value;
     const o = document.getElementById(`inputPlayer-o`).value;
+   
     if (x != "" && o != "" && !nowStart) {
         document.querySelector("#btnStartGame").disabled = false;
-    };
+        textShowing.innerHTML = 'Click START GAME';
+    }if(x != "" && o != "" && nowStart){
+        textShowing.innerHTML = `Turn: X`;
+    }
+
+   
+
 };
+
+
 
 const btnCancelJoins = document.querySelectorAll(".btn-cancel-join-game");
 btnCancelJoins.forEach((btnCancel) => btnCancel.addEventListener("click", cancelJoin));
@@ -97,8 +102,8 @@ function cancelJoin(event){
         const player = btnCancelID[btnCancelID.length-1];
         const playerForm = document.getElementById(`inputPlayer-${player}`);
         if(playerForm.value && playerForm.value === currentUser.email){
-            let tmpID = `user-${player}-id`;
-            let tmpEmail = `user-${player}-email`;
+            let tmpID = `user_${player}_id`;
+            let tmpEmail = `user_${player}_email`;
             gameRef.child("game-1").child(tmpID).remove();
             gameRef.child("game-1").child(tmpEmail).remove();
             console.log(`delete on id: ${currentUser.uid}`);
@@ -114,6 +119,9 @@ function cancelJoin(event){
         };
     };
 };
+
+
+
 const btnStart = document.querySelector("#btnStartGame");
 btnStart.addEventListener("click", startGame);
 function startGame(e) {
@@ -122,9 +130,104 @@ function startGame(e) {
     });
 };
 
+const playerXCombos = [];
+const playerOCombos = [];
+var turns = 0;
+const winningCombos = [
+    ["0", "1", "2"],
+    ["3", "4", "5"],
+    ["6", "7", "8"],
+    ["0", "3", "6"], 
+    ["1", "4", "7"],
+    ["2", "5", "8"],
+    ["0", "4", "8"],
+    ["2", "4", "6"]
+];
 function conBox(e) {
-    console.log(e.currentTarget.id);
+    const currentUser = firebase.auth().currentUser;
+    gameRef.once("value", (snapshot) =>{
+        snapshot.forEach((data)=>{
+            if(currentUser.email == data.val().user_x_email){
+                if(data.val().turn == "x"){
+                    e.currentTarget.childNodes[1].innerHTML = "X";
+                    textShowing.innerHTML = 'Turn: O';
+                    gameRef.child("game-1").update({
+                        ["turn"]: "o",
+                    });
+                    playerXCombos.push(e.currentTarget.childNodes[1].getAttribute("data-symbol"));
+                    e.currentTarget.childNodes[1].setAttribute("data-symbol","x")
+                }
+            }
+            if(currentUser.email == data.val().user_o_email){
+                if(data.val().turn == "o"){
+                    e.currentTarget.childNodes[1].innerHTML = "O";
+                    textShowing.innerHTML = 'Turn: X';
+                    gameRef.child("game-1").update({
+                        ["turn"]: "x",
+                    });
+                    playerOCombos.push(e.currentTarget.childNodes[1].getAttribute("data-symbol"));
+                    e.currentTarget.childNodes[1].setAttribute("data-symbol","o")
+                }
+            }
+            
+        })
+    });
+    checkWinnerX();
+    checkWinnerO();
+    turns++;
 };
+
+function checkWinnerX(){
+    playerXCombos.sort()
+    const currentUser = firebase.auth().currentUser;
+    for(let i = 0;i<winningCombos.length;i++){
+        if(playerXCombos.indexOf(winningCombos[i][0])>=0){
+            if(playerXCombos.indexOf(winningCombos[i][1])>=0){
+                if(playerXCombos.indexOf(winningCombos[i][2])>=0){
+                    textShowing.innerHTML = 'Winner: X';
+                    console.log("Winner X")
+                    userListRef.child(currentUser.uid).update({
+                        score:score+3
+                    })
+                    return true;
+                }
+            }
+        }
+    }
+   
+}
+function checkWinnerO(){
+    playerOCombos.sort()
+    const currentUser = firebase.auth().currentUser;
+    for(let i = 0;i<winningCombos.length;i++){
+        if(playerOCombos.indexOf(winningCombos[i][0])>=0){
+            if(playerOCombos.indexOf(winningCombos[i][1])>=0){
+                if(playerOCombos.indexOf(winningCombos[i][2])>=0){
+                    textShowing.innerHTML = 'Winner: O';
+                    console.log("Winner O")
+                    userListRef.child(currentUser.uid).update({
+                        score:score+3
+                    })
+                    return true;
+                }
+            }
+        }
+    }
+    
+}
+
+
+
+function checkDraw(){
+    const currentUser = firebase.auth().currentUser;
+    if(turns == 8 && !checkWinnerO() && !checkWinnerX()){
+        console.log("Draw")
+        userListRef.child(currentUser.uid).update({
+            score:score+1
+        })
+        return true;
+    }
+}
 
 const btnEnd = document.querySelector("#btnTerminateGame");
 btnEnd.addEventListener("click", endGame);

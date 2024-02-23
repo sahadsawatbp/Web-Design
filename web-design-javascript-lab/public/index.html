@@ -8,8 +8,9 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -34,7 +35,6 @@
         </div>
     </nav>
     <h1 class="display-1 text-center">Tic-Tac-Toe</h1>
-    
     <div class="container logged-in justify-content-center">
         <form class="form-inline row">
             <div class="form-group mb-2 row col-10">
@@ -61,100 +61,46 @@
             </div>
         </form>
     </div>
-    
     <div class="container d-flex justify-content-center mb-2">
         <button type="button" id="btnStartGame" class="btn btn-success mx-1 logged-in">START GAME</button>
         <button type="button" id="btnTerminateGame" class="btn btn-warning mx-1 logged-in">END GAME</button>
     </div>
-    <h3 class="text-center">Waiting for players...</h3>
+    <h3 class="text-center" id="text-show">Waiting for player...</h3>
     <div class="container mb-2">
         <div class="row" id="row-1">
             <div class="col border justify-content-center align-items-center table-col" id="row-1-col-1">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="0"></p>
             </div>
             <div class="col border justify-content-center align-items-center table-col" id="row-1-col-2">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="1"></p>
             </div>
             <div class="col border justify-content-center align-items-center table-col" id="row-1-col-3">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="2"></p>
             </div>
         </div>
         <div class="row" id="row-2">
             <div class="col border justify-content-center align-items-center table-col" id="row-2-col-1">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="3"></p>
             </div>
             <div class="col border justify-content-center align-items-center table-col" id="row-2-col-2">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="4"></p>
             </div>
             <div class="col border justify-content-center align-items-center table-col" id="row-2-col-3">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="5"></p>
             </div>
         </div>
         <div class="row" id="row-3">
             <div class="col border justify-content-center align-items-center table-col" id="row-3-col-1">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="6"></p>
             </div>
             <div class="col border justify-content-center align-items-center table-col" id="row-3-col-2">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="7"></p>
             </div>
             <div class="col border justify-content-center align-items-center table-col" id="row-3-col-3">
-                <p class="display-4 text-center"></p>
+                <p class="display-4 text-center" data-symbol="8"></p>
             </div>
         </div>
     </div>
-     <!-- <div class="container p-5 justify-content-center logged-in">
-        <div class="d-flex">
-            <div class="me-3">
-                <h1>My List</h1>
-            </div>
-            
-        </div>
-        <div id="main-content">
-            
-        </div>
-    </div>
-    <div class="container p-5 justify-content-center logged-in">
-        <div>
-            <h4>Add list</h4>
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">
-                <i class="bi bi-layout-text-sidebar"></i>
-            </span>
-            <input type="text" id="toDoInput" class="form-control" placeholder="Enter the list title"
-                aria-label="Username" aria-describedby="basic-addon1">
-            <button class="btn btn-warning" type="submit" onclick="addList()">Submit</button>
-        </div>
-    </div>  -->
-
-    <!-- <div class="container p-5 justify-content-center logged-in" >
-        <div class="d-flex">
-            <div class="me-3">
-                <h1>Player List</h1>
-            </div>
-            <button type="submit" class="btn btn-primary h-50" onclick="readList2()">
-                <i class="bi bi-arrow-clockwise">update</i>
-            </button>
-        </div>
-        <div id="main-content2">
-            
-        </div>
-    </div>
-    <div class="container p-5 justify-content-center logged-in">
-        <div>
-            <h4>Add Player</h4>
-        </div>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">
-                <i class="bi bi-layout-text-sidebar"></i>
-            </span>
-            <input type="text" id="toDoInput2" class="form-control" placeholder="Enter the username"
-                aria-label="Username" aria-describedby="basic-addon1">
-            <input type="number" id="toDoInput3" class="form-control" placeholder="Enter the score" aria-label="Username"
-                aria-describedby="basic-addon1">
-            <button class="btn btn-warning" type="submit" onclick="addList2()">Submit</button>
-        </div>
-    </div> -->
     <div class="modal" id="modal-login" tabindex="-1">
         <div class="modal-dialog">
           <div class="modal-content">

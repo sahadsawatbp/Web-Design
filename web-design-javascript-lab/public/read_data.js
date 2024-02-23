@@ -70,9 +70,19 @@ let getList = (user) =>{
 
 const logoutItems = document.querySelectorAll(".logged-out");
 const loginItems = document.querySelectorAll(".logged-in");
+var score1
 let setupUI = (user) =>{
+    var score;
+    userListRef.once("value", (snapshot)=>{
+        snapshot.forEach((data)=>{
+            if(user.uid == data.key){
+                score = data.val().score
+                document.querySelector("#user-profile-name").innerHTML= user.email + " (" + score + ")";
+            }
+        })
+    })
+   
     if(user){
-        document.querySelector("#user-profile-name").innerHTML= user.email;
         loginItems.forEach((item)=>(item.style.display = "inline-block"));
         logoutItems.forEach((item)=>(item.style.display = "none"));
     }else{
