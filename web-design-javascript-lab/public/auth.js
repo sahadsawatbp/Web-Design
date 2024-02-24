@@ -45,6 +45,18 @@ btnCancels.forEach((btn) =>{
 })
 var score
 firebase.auth().onAuthStateChanged((user) =>{
+    // gameRef.once("value", (snapshot)=>{
+    //    snapshot.forEach((data)=>{
+    //         let playerSymbol = () => {
+    //             if(user.uid == data.val().user_x_id){
+    //                 return "x";
+    //             }else if(user.uid == data.val().user_o_id){
+    //                 return "o";
+    //             }
+    //         }
+    //    })
+       
+    // })
     userListRef.once("value", (snapshot)=>{
         snapshot.forEach((data)=>{
             if(user.uid == data.key && user){

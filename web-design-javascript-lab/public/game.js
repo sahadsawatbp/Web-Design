@@ -77,13 +77,17 @@ function getGameInfo(snapshot){
     });
     const x = document.getElementById(`inputPlayer-x`).value;
     const o = document.getElementById(`inputPlayer-o`).value;
-   
+    console.log(nowStart)
     if (x != "" && o != "" && !nowStart) {
         document.querySelector("#btnStartGame").disabled = false;
         textShowing.innerHTML = 'Click START GAME';
-    }if(x != "" && o != "" && nowStart){
-        textShowing.innerHTML = `Turn: X`;
     }
+    snapshot.forEach((data)=>{
+        if(x != "" && o != "" && nowStart){
+            textShowing.innerHTML = `Turn: ${data.val().turn.toUpperCase()}`;
+        }
+    })
+    
 
    
 
@@ -154,7 +158,9 @@ function conBox(e) {
                     gameRef.child("game-1").update({
                         ["turn"]: "o",
                     });
-                    playerXCombos.push(e.currentTarget.childNodes[1].getAttribute("data-symbol"));
+                    // playerXCombos.push(e.currentTarget.childNodes[1].getAttribute("data-symbol"));
+                    gameRef.child("game-1/playerXCombos").push(e.currentTarget.childNodes[1].getAttribute("data-symbol"));
+                    // gameRef.child("game-1/playerXCombos").push(playerXCombos);
                     e.currentTarget.childNodes[1].setAttribute("data-symbol","x")
                 }
             }
@@ -165,18 +171,31 @@ function conBox(e) {
                     gameRef.child("game-1").update({
                         ["turn"]: "x",
                     });
-                    playerOCombos.push(e.currentTarget.childNodes[1].getAttribute("data-symbol"));
+                    // playerOCombos.push(e.currentTarget.childNodes[1].getAttribute("data-symbol"));
+                    gameRef.child("game-1/playerOCombos").push(e.currentTarget.childNodes[1].getAttribute("data-symbol"));
                     e.currentTarget.childNodes[1].setAttribute("data-symbol","o")
                 }
             }
             
         })
     });
+    checkDraw();
     checkWinnerX();
     checkWinnerO();
     turns++;
 };
 
+function loadGameScreen(){
+    gameRef.child("game-1").once("value", (snapshot) =>{
+        snapshot.forEach((data)=>{
+            data.forEach((d)=>{
+                console.log(d.val())
+                playerXCombos.push(d.val())
+                console.log(playerXCombos)
+            })
+        })
+    })
+}
 function checkWinnerX(){
     playerXCombos.sort()
     const currentUser = firebase.auth().currentUser;
@@ -194,7 +213,6 @@ function checkWinnerX(){
             }
         }
     }
-   
 }
 function checkWinnerO(){
     playerOCombos.sort()
@@ -213,7 +231,6 @@ function checkWinnerO(){
             }
         }
     }
-    
 }
 
 
